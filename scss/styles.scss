@@ -67,13 +67,15 @@ $white: hsl(0, 0, 100%);
     box-sizing: border-box;
 }
 
+
 body{
-    background-color: $Theme1-main-Background;
-    color: $white;
     font-family: 'Poppins', sans-serif;
+    background-color: $Theme1-main-Background;
 }
 
+
 .container{
+    
     background-color: $Theme1-main-Background;
     padding: 1rem;
     display: flex;
@@ -88,7 +90,7 @@ body{
     font-size: 25px;
 }
 
-.themes{
+.switcher-container{
     float: right;
     display: flex;
     align-items: flex-end;
@@ -97,26 +99,32 @@ body{
     .switcher{
         letter-spacing: 6px;
         text-align:end;
-        border: 1px black solid;
         position: relative;
+        .themes{
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            gap: 1rem;
+            padding: 0 .5rem;
+        }
         .switcher__element{
-            background-color: $Theme1-toggle-background-keypad-background;
             border-radius: 20px;
-            padding: .2rem;
+            padding: .3rem;
             width: 100%;
-            border: 1px black solid;
+            text-align:start;
+            display:flex;
+            align-items:center;
         }
 
         span{
-            padding: 0 .5rem;
+            // padding: 0 .5rem;
             text-align:center;
             display: inline-block;
             width: 100%;
         }
 
         .switcher__ball{
-            display: block;
-            background-color: $red;
+            display: inline-block;
             border-radius: 50%;
             width: 15px;
             height: 15px;
@@ -126,4 +134,184 @@ body{
 
 .result-output{
     clear: both;
+    height: 2rem;
+    padding: 2rem;
+    width: 100%;
+    border-radius: 10px;
+}
+
+.keyboard{
+    display:grid;
+    grid-template-columns: repeat(4,1fr);
+    grid-template-rows: repeat(5,1fr);
+    gap: 1rem;
+    text-align:center;
+    padding: 2rem;
+    
+    border-radius:5px;
+    
+    .key{
+        
+        padding: 1rem 0;
+        font-size: 26px;
+        border-radius:inherit;
+        
+        display:flex;
+        align-items:center;
+        justify-content: center;
+    }
+
+
+    .del,.reset, .equal{
+        
+        
+        font-size: 20px;
+    }
+
+    .reset{
+        grid-column: 1/3;
+    }
+
+    .equal{
+        grid-column: 3/5;
+    }
+}
+
+.theme1{
+    background-color: $Theme1-main-Background;
+
+    .container{
+        background-color: $Theme1-main-Background;
+    }
+    
+    .header{
+        color: $white;
+        .switcher__element{
+            background-color: $Theme1-toggle-background-keypad-background;
+            justify-content:flex-start;
+            .switcher__ball{
+                background-color: $red;
+            }
+        }
+    }
+
+    .result-output {
+        background-color: $Theme1-toggle-background-keypad-background;
+    }
+
+    .keyboard{
+        background-color: $Theme1-toggle-background-keypad-background;
+        .key{
+            color: $very-dark-grayish-blue;
+            background-color: $light-grayish-orange;
+            box-shadow: 0px 5px 0px $grayish-orange;
+
+        }
+
+        .del, .reset, .equal{
+            background-color: $desaturated-dark-blue1;
+            color: $white;
+            box-shadow: 0px 5px 0px $desaturated-dark-blue2;
+        }
+
+        .equal{
+            background-color: $red;
+            box-shadow: 0px 5px 0px $dark-red;
+        }
+    }
+}
+
+
+
+.theme2{
+    background-color: $theme2-main-background;
+
+    .container{
+        background-color: $theme2-main-background;
+
+        .header{
+            color: $very-dark-grayish-yellow;
+            .switcher__element{
+                background-color: $theme2-toggle-background-keypad-background;
+                justify-content:center;
+                .switcher__ball{
+                    background-color: $orange-key-background-toggle;
+                    margin: 0;
+                }
+            }
+        }
+
+        .result-output{
+            background-color: $theme2-screen-background;
+            color: $very-dark-grayish-yellow;
+        }
+
+        .keyboard{
+            background-color: $theme2-toggle-background-keypad-background;
+        }
+
+        .key{
+            background-color: $light-grayish-orange;
+            color:$very-dark-grayish-yellow;
+            box-shadow: 0px 5px 0px $grayish-orange;
+        }
+
+        .del, .reset, .equal{
+            color: $white;
+        }
+
+        .del, .reset{
+            background-color: $dark-moderate-cyan-key-background;
+            box-shadow: 0px 5px 0px $very-dark-cyan-key-shadow;
+        }
+
+        .equal{
+            background-color: $orange-key-background-toggle;
+            box-shadow: 0px 5px 0px $dark-orange-key-shadow;
+        }
+    }
+}
+
+.theme3{
+    background-color: $very-dark-violet-main-background;
+    .container{
+        background-color: $very-dark-violet-main-background;
+        
+        .header{
+            color: $light-yellow;
+            .switcher__element{
+                background-color: $very-dark-violet-toggle-background-keypad-background-screen-background;
+                justify-content:flex-end;
+                .switcher__ball{
+                    background-color: $pure-cyan-key-background-toggle;
+                }
+            }
+        }
+
+        .result-output{
+            background-color: $very-dark-violet-toggle-background-keypad-background-screen-background;
+            color: $light-yellow;
+        }
+
+        .keyboard{
+            background-color: $very-dark-violet-toggle-background-keypad-background-screen-background;
+        }
+
+        .key{
+            background-color: $very-dark-violet-key-background;
+            color: $light-yellow;
+            box-shadow: 0px 5px 0px $dark-magenta-key-shadow;
+        }
+
+        .del, .reset{
+            background-color:$dark-violet-key-background;
+            color: $white;
+        }
+
+        .equal{
+            background-color: $pure-cyan-key-background-toggle;
+            box-shadow: 0px 5px 0px $soft-cyan-key-shadow;
+            color: $very-dark-blue;
+        }
+    }
 }

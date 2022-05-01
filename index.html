@@ -18,29 +18,29 @@
 
 </head>
 
-<body>
+<body id="body" class="theme1">
   <div class="container">
     <header class="header">
       calc
-      <div class="themes">
+      <div class="switcher-container">
         THEME <div class="switcher">
-           <span>1 2 3</span>
-          <div class="switcher__element" data-theme>
+           <span class="themes"> <span data-theme="theme1">1</span> <span data-theme="theme2">2</span> <span data-theme="theme3">3</span></span>
+          <div class="switcher__element">
             <span class="switcher__ball"></span>
           </div>
         </div>
       </div>
     </header>
 
-    <section class="result-output" data-theme>
+    <section class="result-output">
       <span class="result-output__element"></span>
     </section>
 
-    <section class="keyborard" data-theme>
+    <section class="keyboard">
       <span class="key">7</span>
       <span class="key">8</span>
       <span class="key">9</span>
-      <span class="key">DEL</span>
+      <span class="key del">DEL</span>
       <span class="key">4</span>
       <span class="key">5</span>
       <span class="key">6</span>
@@ -53,16 +53,17 @@
       <span class="key">0</span>
       <span class="key">/</span>
       <span class="key">x</span>
-      <span class="key">RESET</span>
-      <span class="key">=</span>
+      <span class="key reset">RESET</span>
+      <span class="key equal">=</span>
     </section>
 
   </div>
 
   <div class="attribution">
     Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.
-    Coded by <a href="#">Your Name Here</a>.
+    Coded by <a href="#">Julio Espinola</a>.
   </div>
+  <script src="js/index.js" type="module"></script>
 </body>
 
 </html>
