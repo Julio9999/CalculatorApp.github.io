@@ -101,12 +101,36 @@ body {
   height: 15px;
 }
 
-.result-output {
+.input-group {
   clear: both;
   height: 2rem;
-  padding: 2rem;
   width: 100%;
   border-radius: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.input-group .input-group__input {
+  width: 100%;
+  outline: 0;
+  border: 0;
+  padding: 0;
+  background-color: inherit;
+  color: white;
+  padding: 0 0.5rem;
 }
 
 .keyboard {
@@ -123,6 +147,7 @@ body {
 }
 
 .keyboard .key {
+  border: 0px;
   padding: 1rem 0;
   font-size: 26px;
   border-radius: inherit;
@@ -176,7 +201,7 @@ body {
   background-color: #d03f2f;
 }
 
-.theme1 .result-output {
+.theme1 .input-group {
   background-color: #232c43;
 }
 
@@ -228,7 +253,7 @@ body {
   margin: 0;
 }
 
-.theme2 .container .result-output {
+.theme2 .container .input-group {
   background-color: #ededed;
   color: #35352c;
 }
@@ -283,7 +308,7 @@ body {
   background-color: #00e0d1;
 }
 
-.theme3 .container .result-output {
+.theme3 .container .input-group {
   background-color: #1d0934;
   color: #ffe53d;
 }

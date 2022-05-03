@@ -132,12 +132,28 @@ body{
     }
 }
 
-.result-output{
+.input-group{
     clear: both;
     height: 2rem;
-    padding: 2rem;
+    // padding: 2rem;
     width: 100%;
     border-radius: 10px;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+    justify-content:center;
+    
+
+    .input-group__input{
+        width: 100%;
+        outline: 0;
+        border: 0;
+        padding: 0;
+        background-color: inherit;
+        color: $white;
+        padding: 0 0.5rem ;
+    }
 }
 
 .keyboard{
@@ -147,15 +163,12 @@ body{
     gap: 1rem;
     text-align:center;
     padding: 2rem;
-    
     border-radius:5px;
-    
     .key{
-        
+        border: 0px;
         padding: 1rem 0;
         font-size: 26px;
         border-radius:inherit;
-        
         display:flex;
         align-items:center;
         justify-content: center;
@@ -195,7 +208,7 @@ body{
         }
     }
 
-    .result-output {
+    .input-group {
         background-color: $Theme1-toggle-background-keypad-background;
     }
 
@@ -241,7 +254,7 @@ body{
             }
         }
 
-        .result-output{
+        .input-group{
             background-color: $theme2-screen-background;
             color: $very-dark-grayish-yellow;
         }
@@ -288,7 +301,7 @@ body{
             }
         }
 
-        .result-output{
+        .input-group{
             background-color: $very-dark-violet-toggle-background-keypad-background-screen-background;
             color: $light-yellow;
         }
