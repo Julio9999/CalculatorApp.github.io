@@ -1,14 +1,10 @@
 const d = document;
 
 export default function numberExtractor(inputValue){
-    let inputValue1 = '123435+123456+98777';
-    console.log(inputValue1, inputValue);
-    let regex = /^[0-9][0-9]*/gi
-    const numbers = inputValue.match(regex);
-    console.log(numbers);
-    /*
-    numbers.forEach(number =>{
-        console.log(number[0]);
-    })
-    */
+    let regex = /[0-9]+/g
+    let regex2 = /\D+/g
+    const numbersString = inputValue.match(regex);
+    const numbers = numbersString.map(el => Number(el));
+    const operations = inputValue.match(regex2);
+    return [numbers , operations];
 }
