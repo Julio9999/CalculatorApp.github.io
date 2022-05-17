@@ -9,36 +9,50 @@ export default function mathematicalOperations(input){
     if(operaciones.match(regex2)){
         console.log('Syntax error');
     }else{
-        const operations1 = (operaciones.match(regex));
+        const operations1 = (input.match(regex));
 
-        console.log(operations1)
-        
-        
         let array = reducer(operations1)
         console.log(array)
-        
-        
-        let array2 = reducer(array)
-        console.log(array2)
-
-        
-        let array3 = reducer(array2)
-        console.log(array3)
         
     }
 
     function reducer(array){
-        let newarray = []
+        let newarray = [],
+        leftArray = [],
+        rigthArray = []
 
         for(let i=0;i<array.length;i++){
             if(array[i] == 'x'){
-                newarray.push(multiplicar(array[i-1], array[i+1]))
-                newarray = newarray.concat(array.slice(i+1,array.length).slice(i, array.length), array.slice(0,i-1).slice(0,1))
+                if((i-2) < 0){
+                    leftArray.push(multiplicar(array[i+1], array[i-1]))
+                }else{
+                    leftArray = (array.slice(0,(i-1)))
+                    leftArray.push(multiplicar(array[i+1], array[i-1]))
+                }
+                if(-(array.length-i-2) < 0){
+                    rigthArray = (array.slice(-(array.length-i-2)))
+                }
+                
+                console.log(leftArray, 'left')
+                console.log(rigthArray, 'right')
+
+
+                newarray = newarray.concat(leftArray, rigthArray)
                 return newarray
             }
             else if(array[i] == '/'){
-                newarray.push(dividir(array[i-1], array[i+1]))
-                newarray = newarray.concat(array.slice(i+1,array.length).slice(i, array.length))
+                if((i-2) < 0){
+                    leftArray.push(dividir(array[i-1], array[i+1]))
+                }else{
+                    leftArray = (array.slice(0,(i-2))).push(dividir(array[i-1], array[i+1]))
+                }
+                
+                if(-(array.length-i-2) < 0){
+                    rigthArray = (array.slice(-(array.length-i-2)))
+                }
+                
+
+                newarray = newarray.concat(leftArray, rigthArray)
                 return newarray
             }
         }
