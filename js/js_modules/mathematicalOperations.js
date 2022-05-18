@@ -4,18 +4,15 @@ export default function mathematicalOperations(input){
     let regex = /[0-9]+|\x|\/|\+|\-/g;
     let regex2 = /\x$|\/$|\-$|\+$/;
     let regex3 = /[0-9]+\x[0-9]+|[0-9]+\/[0-9]+|[0-9]+\+[0-9]+|[0-9]+\-[0-9]+/g;
-    let result = '';
-    let operaciones = "5x5/5-3+2x5+2x15"
-    if(operaciones.match(regex2)){
-        console.log('Syntax error');
-    }else{
-        const operations1 = (input.match(regex));
+    
 
-        let array = reducer(operations1)
-        console.log(array)
-        
-    }
-
+    
+    
+    const operations1 = (input.match(regex));
+    
+    let array = reducer(operations1)
+    console.log(array)
+    
     function reducer(array){
         let newarray = [],
         leftArray = [],
@@ -32,13 +29,9 @@ export default function mathematicalOperations(input){
                 if(-(array.length-i-2) < 0){
                     rigthArray = (array.slice(-(array.length-i-2)))
                 }
-                
-                console.log(leftArray, 'left')
-                console.log(rigthArray, 'right')
-
 
                 newarray = newarray.concat(leftArray, rigthArray)
-                return newarray
+                return newarray.includes('/') || newarray.includes('x') ? reducer(newarray) : sumarRestar(newarray);
             }
             else if(array[i] == '/'){
                 if((i-2) < 0){
@@ -46,17 +39,36 @@ export default function mathematicalOperations(input){
                 }else{
                     leftArray = (array.slice(0,(i-2))).push(dividir(array[i-1], array[i+1]))
                 }
-                
                 if(-(array.length-i-2) < 0){
                     rigthArray = (array.slice(-(array.length-i-2)))
                 }
-                
 
                 newarray = newarray.concat(leftArray, rigthArray)
-                return newarray
+                return newarray.includes('/') || newarray.includes('x') ? reducer(newarray) : sumarRestar(newarray);
             }
         }
 
+    }
+    function sumarRestar(array){
+        
+        let resultado = 0
+        for(let i=0;i<array.length;i++){
+            if(array[i] == '+'){
+                if(resultado == 0){
+                    resultado = (sumar(Number(array[i-1]), Number(array[i+1])))
+                }else{
+                    resultado = (sumar(Number(resultado), Number(array[i+1])))
+                }
+            }else if(array[i] == '-'){
+                if(resultado == 0){
+                    resultado = (restar(Number(array[i-1]), Number(array[i+1])))
+                }else{
+                    resultado = restar(Number(resultado), Number(array[i+1]))
+                }
+            }
+        }
+        
+        return resultado;
     }
 
     function multiplicar(num1,num2){

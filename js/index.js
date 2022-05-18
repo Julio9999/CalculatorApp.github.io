@@ -15,8 +15,9 @@ d.addEventListener('click', (e)=>{
 
     if(e.target.matches('.key')){
         if(e.target.matches('.equal')){
-            //const numbersOperations = numberExtractor(d.getElementById('input').value);
-            const result = mathematicalOperations(d.getElementById('input').value);
+            
+            let result = mathematicalOperations(d.getElementById('input').value);
+            console.log(result)
             
         }else{
             keys(d.getElementById('input'), e.target.textContent);
