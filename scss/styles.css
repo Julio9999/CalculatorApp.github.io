@@ -62,17 +62,23 @@ body {
 }
 
 .switcher-container .switcher .themes {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  gap: 1rem;
-  padding: 0 .5rem;
+  /*
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            gap: 1rem;
+            padding: 0 .5rem;
+            */
+  width: 100px;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[3];
+      grid-template-columns: repeat(3, 1fr);
+}
+
+.switcher-container .switcher .theme {
+  height: 45px;
+  z-index: 10;
 }
 
 .switcher-container .switcher .switcher__element {
@@ -86,6 +92,9 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  border: 1px black solid;
+  position: absolute;
+  bottom: 0;
 }
 
 .switcher-container .switcher span {
@@ -160,6 +169,7 @@ body {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  cursor: pointer;
 }
 
 .keyboard .del, .keyboard .reset, .keyboard .equal {

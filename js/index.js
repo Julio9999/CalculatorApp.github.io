@@ -3,7 +3,8 @@ import keys from "./js_modules/keys.js";
 import numberExtractor from "./js_modules/numberExtractor.js";
 import mathematicalOperations from "./js_modules/mathematicalOperations.js";
 
-const d = document;
+const d = document,
+input = d.getElementById('input');
 
 d.addEventListener('DOMContentLoaded', (e)=>{
     themeSwitcher()
@@ -15,10 +16,8 @@ d.addEventListener('click', (e)=>{
 
     if(e.target.matches('.key')){
         if(e.target.matches('.equal')){
-            
-            let result = mathematicalOperations(d.getElementById('input').value);
-            console.log(result)
-            
+            let result = mathematicalOperations(input.value);
+            input.value = result;
         }else{
             keys(d.getElementById('input'), e.target.textContent);
         }

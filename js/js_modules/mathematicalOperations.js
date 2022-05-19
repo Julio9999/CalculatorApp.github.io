@@ -9,10 +9,9 @@ export default function mathematicalOperations(input){
     
     
     const operations1 = (input.match(regex));
-    
+
     let array = reducer(operations1)
-    console.log(array)
-    
+
     function reducer(array){
         let newarray = [],
         leftArray = [],
@@ -49,25 +48,29 @@ export default function mathematicalOperations(input){
         }
 
     }
+    
     function sumarRestar(array){
-        
+
         let resultado = 0
-        for(let i=0;i<array.length;i++){
-            if(array[i] == '+'){
-                if(resultado == 0){
-                    resultado = (sumar(Number(array[i-1]), Number(array[i+1])))
-                }else{
-                    resultado = (sumar(Number(resultado), Number(array[i+1])))
-                }
-            }else if(array[i] == '-'){
-                if(resultado == 0){
-                    resultado = (restar(Number(array[i-1]), Number(array[i+1])))
-                }else{
-                    resultado = restar(Number(resultado), Number(array[i+1]))
+        if(array.length == 1){
+            resultado = array[0]
+        }else{
+            for(let i=0;i<array.length;i++){
+                if(array[i] == '+'){
+                    if(resultado == 0){
+                        resultado = (sumar(Number(array[i-1]), Number(array[i+1])))
+                    }else{
+                        resultado = (sumar(Number(resultado), Number(array[i+1])))
+                    }
+                }else if(array[i] == '-'){
+                    if(resultado == 0){
+                        resultado = (restar(Number(array[i-1]), Number(array[i+1])))
+                    }else{
+                        resultado = restar(Number(resultado), Number(array[i+1]))
+                    }
                 }
             }
         }
-        
         return resultado;
     }
 
@@ -86,13 +89,7 @@ export default function mathematicalOperations(input){
     function restar(num1, num2){
         return num1 - num2
     }
+
+    return array;
 }
 
-
-/*
-else if(array[i] == '+' || array[i] == '-'){
-                newarray.push(array[i-1])
-                newarray.push(array[i])
-                newarray.push(array[i+1])
-            }
-*/
