@@ -2,15 +2,53 @@ const d = document;
 
 export default function mathematicalOperations(input){
     let regex = /[0-9]+|\x|\/|\+|\-/g;
-    let regex2 = /\x$|\/$|\-$|\+$/;
-    let regex3 = /[0-9]+\x[0-9]+|[0-9]+\/[0-9]+|[0-9]+\+[0-9]+|[0-9]+\-[0-9]+/g;
-    
+    let regex2 = /-(?=-+)/g;
+    let regex3 = /-{2,}/g;
 
-    
-    
-    const operations1 = (input.match(regex));
 
-    let array = reducer(operations1)
+
+    let operations = input.match(regex).toString().replace(/,/g, "");
+    console.log(operations);
+    
+    //console.log(operations.search(regex3));
+
+
+    let s = (input.match(regex3));
+    console.log(s)
+    for(let i=0;i<s.length;i++){
+        if(s[i].length %2 == 0){
+            s[i] = '+'
+        }else{
+            s[i] = '-'
+        }
+    }
+
+
+    for(let i=0;i<s.length;i++){
+        operations = operations.toString().replace(/,/g, "");
+        operations = operations.replace(regex3, s[i]);
+    }
+    console.log(operations.split(''));
+    /*
+    if(regex2.test(input)){
+        let str = input.match(regex2).toString().replace(/,/g,"") + '-';
+        console.log(str);
+        if((str.length) % 2 == 0){
+            operations = (input.replace(str, '+'));
+        }else{
+            operations = (input.replace(str, '-'));
+        }
+        operations = (operations.split(''));
+    }
+    
+    const operations1 = (operations);
+    
+    console.log(operations1);
+
+    let resultado = reducer(operations1)
+    console.log(resultado)
+    return resultado;
+    */
 
     function reducer(array){
         let newarray = [],
@@ -18,39 +56,42 @@ export default function mathematicalOperations(input){
         rigthArray = []
 
         for(let i=0;i<array.length;i++){
-            if(array[i] == 'x'){
-                if((i-2) < 0){
-                    leftArray.push(multiplicar(array[i+1], array[i-1]))
-                }else{
-                    leftArray = (array.slice(0,(i-1)))
-                    leftArray.push(multiplicar(array[i+1], array[i-1]))
+            if(!array.includes('/') && !array.includes('x')){
+                return sumarRestar(array)
+            }else{
+                if(array[i] == 'x'){
+                    if((i-2) < 0){
+                        leftArray.push(multiplicar(array[i+1], array[i-1]))
+                    }else{
+                        leftArray = (array.slice(0,(i-1)))
+                        leftArray.push(multiplicar(array[i+1], array[i-1]))
+                    }
+                    if(-(array.length-i-2) < 0){
+                        rigthArray = (array.slice(-(array.length-i-2)))
+                    }
+    
+                    newarray = newarray.concat(leftArray, rigthArray)
+                    return newarray.includes('/') || newarray.includes('x') ? reducer(newarray) : sumarRestar(newarray);
                 }
-                if(-(array.length-i-2) < 0){
-                    rigthArray = (array.slice(-(array.length-i-2)))
+                else if(array[i] == '/'){
+                    if((i-2) < 0){
+                        leftArray.push(dividir(array[i-1], array[i+1]))
+                    }else{
+                        leftArray = (array.slice(0,(i-2))).push(dividir(array[i-1], array[i+1]))
+                    }
+                    if(-(array.length-i-2) < 0){
+                        rigthArray = (array.slice(-(array.length-i-2)))
+                    }
+    
+                    newarray = newarray.concat(leftArray, rigthArray)
+                    return newarray.includes('/') || newarray.includes('x') ? reducer(newarray) : sumarRestar(newarray);
                 }
-
-                newarray = newarray.concat(leftArray, rigthArray)
-                return newarray.includes('/') || newarray.includes('x') ? reducer(newarray) : sumarRestar(newarray);
             }
-            else if(array[i] == '/'){
-                if((i-2) < 0){
-                    leftArray.push(dividir(array[i-1], array[i+1]))
-                }else{
-                    leftArray = (array.slice(0,(i-2))).push(dividir(array[i-1], array[i+1]))
-                }
-                if(-(array.length-i-2) < 0){
-                    rigthArray = (array.slice(-(array.length-i-2)))
-                }
-
-                newarray = newarray.concat(leftArray, rigthArray)
-                return newarray.includes('/') || newarray.includes('x') ? reducer(newarray) : sumarRestar(newarray);
             }
-        }
 
     }
     
     function sumarRestar(array){
-
         let resultado = 0
         if(array.length == 1){
             resultado = array[0]
@@ -90,6 +131,5 @@ export default function mathematicalOperations(input){
         return num1 - num2
     }
 
-    return array;
 }
 
