@@ -32,7 +32,7 @@ d.addEventListener('click', (e)=>{
         }else if(e.target.matches('.reset')){
             input.value = ''
             input.dataset.result = false;
-        }else if(e.target.matches('.delete')){
+        }else if(e.target.matches('.del')){
             input.value = input.value.substring(0, input.value.length - 1);
         }else{
             keys(d.getElementById('input'), e.target.textContent);
