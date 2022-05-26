@@ -183,9 +183,22 @@ body{
         align-items:center;
         justify-content: center;
         cursor: pointer;
+        transition: ease-in-out .1s;
+    }
+
+    .key.active{
+        animation-name: keypressed;
+        animation-duration: .5s;
     }
     
-    
+    @keyframes keypressed {
+        0%{
+            transform: scale(1.03);
+        }
+        100%{
+            transform: scale(1);
+        }
+    }
 
     .del,.reset, .equal{
         font-size: 20px;
@@ -220,6 +233,11 @@ body{
 
     .input-group {
         background-color: $Theme1-toggle-background-keypad-background;
+        color: $white;
+        
+        .input-group__input{
+            color: inherit
+        }
     }
 
     .keyboard{
@@ -266,7 +284,13 @@ body{
         .input-group{
             background-color: $theme2-screen-background;
             color: $very-dark-grayish-yellow;
+
+            .input-group__input{
+                color: inherit;
+            }
         }
+
+    
 
         .keyboard{
             background-color: $theme2-toggle-background-keypad-background;

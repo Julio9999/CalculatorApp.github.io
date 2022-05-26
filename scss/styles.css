@@ -170,6 +170,37 @@ body {
       -ms-flex-pack: center;
           justify-content: center;
   cursor: pointer;
+  -webkit-transition: ease-in-out .1s;
+  transition: ease-in-out .1s;
+}
+
+.keyboard .key.active {
+  -webkit-animation-name: keypressed;
+          animation-name: keypressed;
+  -webkit-animation-duration: .5s;
+          animation-duration: .5s;
+}
+
+@-webkit-keyframes keypressed {
+  0% {
+    -webkit-transform: scale(1.03);
+            transform: scale(1.03);
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+
+@keyframes keypressed {
+  0% {
+    -webkit-transform: scale(1.03);
+            transform: scale(1.03);
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
 }
 
 .keyboard .del, .keyboard .reset, .keyboard .equal {
@@ -213,6 +244,11 @@ body {
 
 .theme1 .input-group {
   background-color: #232c43;
+  color: white;
+}
+
+.theme1 .input-group .input-group__input {
+  color: inherit;
 }
 
 .theme1 .keyboard {
@@ -266,6 +302,10 @@ body {
 .theme2 .container .input-group {
   background-color: #ededed;
   color: #35352c;
+}
+
+.theme2 .container .input-group .input-group__input {
+  color: inherit;
 }
 
 .theme2 .container .keyboard {

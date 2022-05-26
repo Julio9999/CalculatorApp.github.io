@@ -1,55 +1,39 @@
 const d = document;
 
 export default function mathematicalOperations(input){
-    let regex = /[0-9]+|\x|\/|\+|\-/g;
-    let regex2 = /-(?=-+)/g;
-    let regex3 = /-{2,}/g;
+    let regex1 = /\-+$|\++$|\x+$|\/+$/;
+    let regex2 = /[0-9]+\.[0-9]+|[0-9]+|\x|\/|\++|\-+/g;
+    let regex3 = /-{2,}|\+{2,}/g;
 
+    if(regex1.test(input)){
+        return "Syntax Error"
+    }else{
 
-
-    let operations = input.match(regex).toString().replace(/,/g, "");
-    console.log(operations);
-    
-    //console.log(operations.search(regex3));
-
-
-    let s = (input.match(regex3));
-    console.log(s)
-    for(let i=0;i<s.length;i++){
-        if(s[i].length %2 == 0){
-            s[i] = '+'
-        }else{
-            s[i] = '-'
+        let operations = input.match(regex2)
+        for(let i=0;i<operations.length;i++){
+            if(regex3.test(operations[i])){
+                if(((operations[i].length) + 1) % 2 == 0){
+                    if(operations[i].includes('+')){
+                        operations[i] = '+'
+                    }else{
+                        operations[i] = '-'
+                    }
+                }else{
+                    if(operations[i].includes('+')){
+                        operations[i] = '+'
+                    }else{
+                        operations[i] = '+'
+                    }
+                }
+            }
         }
+        let result = reducer(operations)
+        return result;
     }
 
-
-    for(let i=0;i<s.length;i++){
-        operations = operations.toString().replace(/,/g, "");
-        operations = operations.replace(regex3, s[i]);
-    }
-    console.log(operations.split(''));
-    /*
-    if(regex2.test(input)){
-        let str = input.match(regex2).toString().replace(/,/g,"") + '-';
-        console.log(str);
-        if((str.length) % 2 == 0){
-            operations = (input.replace(str, '+'));
-        }else{
-            operations = (input.replace(str, '-'));
-        }
-        operations = (operations.split(''));
-    }
     
-    const operations1 = (operations);
     
-    console.log(operations1);
-
-    let resultado = reducer(operations1)
-    console.log(resultado)
-    return resultado;
-    */
-
+    
     function reducer(array){
         let newarray = [],
         leftArray = [],
