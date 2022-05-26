@@ -1,7 +1,7 @@
 const d = document;
 
 export default function mathematicalOperations(input){
-    let regex1 = /\-+$|\++$|\x+$|\/+$/;
+    let regex1 = /\x{2,}|\/{2,}|\-+$|\++$|\x+$|\/+$/;
     let regex2 = /[0-9]+\.[0-9]+|[0-9]+|\x|\/|\++|\-+/g;
     let regex3 = /-{2,}|\+{2,}/g;
 

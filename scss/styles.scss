@@ -100,17 +100,9 @@ body{
         text-align:end;
         position: relative;
         .themes{
-            /*
-            display:flex;
-            align-items:center;
-            justify-content:center;
-            gap: 1rem;
-            padding: 0 .5rem;
-            */
             width: 100px;
             display: grid;
             grid-template-columns: repeat(3,1fr);
-            
         }
 
         .theme{
@@ -187,8 +179,19 @@ body{
     }
 
     .key.active{
-        animation-name: keypressed;
-        animation-duration: .5s;
+        -webkit-animation-name: keypressed;
+                animation-name: keypressed;
+        -webkit-animation-duration: .5s;
+                animation-duration: .5s;
+    }
+    
+    @-webkit-keyframes keypressed {
+        0%{
+            transform: scale(1.03);
+        }
+        100%{
+            transform: scale(1);
+        }
     }
     
     @keyframes keypressed {
